@@ -1,4 +1,5 @@
-# Final Project 
+# News Explorer
+Frontend for the News Explorer application - a web application that allows users to search for news articles and save their favorites.
 
 
 
@@ -6,8 +7,6 @@
 ```text
 src/
   assets/
-  utils/
-  vendor/
   components/
     Header/
       Header.jsx
@@ -42,5 +41,20 @@ src/
     RegisterModal/
       RegisterModal.jsx
       RegisterModal.css
+  utils/
+      apiData.js
+  vendor/
+      normalize.css
+  App.jsx
+  global.css
+  main.jsx
+  .gitignore
+  .prettierignore
+  eslint.config.js
+  index.htmml
+  package-lock.json
+  package.json
+  README.md
+  vite.config.js
 
 ```
