@@ -1,0 +1,82 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.news-card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 104px;
+  padding-right: 104px;
+  max-width: 100%;
+  padding-top: 190px;
+  padding-bottom: 208px;
+}
+.search-results__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 282px;
+  background-color: #f5f6f7;
+  margin-bottom: 80px;
+}
+
+.search-results__text {
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #6c707a;
+  margin-top: 24px;
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

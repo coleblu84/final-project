@@ -8,7 +8,6 @@ function ModalWithForm({ title, children, onClose, buttonText, onSubmit }) {
     }
   }
 
-  // ESC key handler
   useEffect(() => {
     function handleEscClose(e) {
       if (e.key === "Escape") {

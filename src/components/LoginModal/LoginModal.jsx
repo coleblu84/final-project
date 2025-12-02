@@ -1,23 +1,66 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useFormValidation from "../Hooks/useFormValidation.jsx";
 
-function LoginModal({ isOpen, onClose }) {
-  if (!isOpen) return null;
+function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
+  const { values, errors, handleChange, isValid } = useFormValidation(
+    {}, 
+    ["email", "password"]
+  );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isValid) {
+      onLogin(values);
+    }
+  };
 
   return (
     <ModalWithForm
-      title="Sign in"
-      buttonText="Sign in"
+      title="Sign In"
+      isOpen={isOpen}
       onClose={onClose}
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit}
+      submitButtonText="Sign In"
+      isSubmitDisabled={!isValid}
+      alternateTextContent={
+        <>
+          or{" "}
+          <span className="modal__link-text" onClick={switchToRegister}>
+            Sign Up
+          </span>
+        </>
+      }
     >
       <label className="modal__label">
         Email
-        <input type="email" required className="modal__input" />
+        <input
+          className="modal__input"
+          type="email"
+          name="email"
+          required
+          placeholder="Enter email"
+          value={values.email || ""}
+          onChange={handleChange}
+        />
+        {errors.email && (
+          <span className="modal__error-message modal__error-message_visible">{errors.email}</span>
+        )}
       </label>
 
       <label className="modal__label">
         Password
-        <input type="password" required className="modal__input" />
+        <input
+          className="modal__input"
+          type="password"
+          name="password"
+          required
+          placeholder="Enter Password"
+          value={values.password || ""}
+          onChange={handleChange}
+        />
+        {errors.password && (
+          <span className="modal__error-message modal__error-message_visible">{errors.password}</span>
+        )}
       </label>
     </ModalWithForm>
   );

@@ -1,51 +1,82 @@
-# News Explorer
-Frontend for the News Explorer application - a web application that allows users to search for news articles and save their favorites.
+# 🌎 News Explorer
+ - Frontend for the News Explorer application - a web application that allows users to search for news articles and save their favorites.
+ - News Explorer is a responsive web application built with React that enables users to search for news articles using a third-party news API. Users can browse current news, search for specific topics, and create a personalized collection of saved articles.
 
+## 💻 Features
+- Search for news articles by keyword
+- Browse current and trending news
+- Responsive design that works on desktop and mobile devices
+- Clean, modern user interface
+- Real-time news data from external API
+
+## ⚡ Live Demo
+Check out the live version here!!
 
 
 ## 📁 File Structure
 ```text
+node_modules/
+public/
 src/
+  Api/
+   newsApi.jsx
   assets/
   components/
-    Header/
-      Header.jsx
-      Header.css
-    Navigation/
-      Navigation.jsx
-      Navigation.css
-    SearchForm/
-      SearchForm.jsx
-      SearchForm.css
-    Main/
-      Main.jsx
-      Main.css
-    NewsCard/
-      NewsCard.jsx
-      NewsCard.css
     About/
-      About.jsx
       About.css
+      About.jsx
+    App/
+      App.css
+      App.jsx
     Footer/
-      Footer.jsx
       Footer.css
-    Preloader/
-      Preloader.jsx
-      Preloader.css
-    ModalWithForm/
-      ModalWithForm.jsx
-      ModalWithForm.css
+      Footer.jsx
+    Header/
+      Header.css
+      Header.jsx
+    Hooks/
+      useFormValidation.jsx
+    Layout/
+      Layout.css
+      Layout.jsx
     LoginModal/
-      LoginModal.jsx
       LoginModal.css
+      LoginModal.jsx
+    Main/
+      Main.css
+      Main.jsx
+    ModalWithForm/
+      ModalWithForm.css
+      ModalWithForm.jsx
+    Navigation/
+      Navigation.css
+      Navigation.jsx
+    NewsCard/
+      NewsCard.css
+      NewsCard.jsx
+    NewsCardList/
+      NewsCardList.css
+      NewsCardList.jsx
+    NotFound/
+      NotFound.css
+      NotFound.jsx
+    Preloader/
+      Preloader.css
+      Preloader.jsx
     RegisterModal/
-      RegisterModal.jsx
       RegisterModal.css
+      RegisterModal.jsx
+    RegisterSuccessModal/
+      RegisterSuccessModal.jsx
+    SavedNews/
+      SavedNews.css
+      SavedNews.jsx
   utils/
-      apiData.js
+      storage.jsx
   vendor/
+      Fonts/
+      fonts.css
       normalize.css
-  App.jsx
   global.css
   main.jsx
   .gitignore
