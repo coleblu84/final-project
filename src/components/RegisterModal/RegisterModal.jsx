@@ -10,9 +10,7 @@ function RegisterModal({ isOpen, onClose, onRegister, switchToLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValid) {
-      onRegister(values);
-    }
+    if (isValid) onRegister(values);
   };
 
   return (
@@ -36,16 +34,14 @@ function RegisterModal({ isOpen, onClose, onRegister, switchToLogin }) {
         Email
         <input
           className="modal__input"
-          type="email"
           name="email"
+          type="email"
           required
           value={values.email || ""}
           onChange={handleChange}
         />
         {errors.email && (
-          <span className="modal__error-message modal__error-message_visible">
-            {errors.email}
-          </span>
+          <span className="modal__error-message_visible">{errors.email}</span>
         )}
       </label>
 
@@ -53,14 +49,14 @@ function RegisterModal({ isOpen, onClose, onRegister, switchToLogin }) {
         Password
         <input
           className="modal__input"
-          type="password"
           name="password"
+          type="password"
           required
           value={values.password || ""}
           onChange={handleChange}
         />
         {errors.password && (
-          <span className="modal__error-message modal__error-message_visible">
+          <span className="modal__error-message_visible">
             {errors.password}
           </span>
         )}
@@ -70,16 +66,14 @@ function RegisterModal({ isOpen, onClose, onRegister, switchToLogin }) {
         Name
         <input
           className="modal__input"
-          type="text"
           name="name"
+          type="text"
           required
           value={values.name || ""}
           onChange={handleChange}
         />
         {errors.name && (
-          <span className="modal__error-message modal__error-message_visible">
-            {errors.name}
-          </span>
+          <span className="modal__error-message_visible">{errors.name}</span>
         )}
       </label>
     </ModalWithForm>

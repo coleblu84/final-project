@@ -1,7 +1,17 @@
 import { useEffect } from "react";
 import closeIcon from "../../assets/close.svg";
+import "./ModalWithForm.css";
 
-function ModalWithForm({ title, children, onClose, buttonText, onSubmit }) {
+function ModalWithForm({
+  title,
+  children,
+  isOpen,
+  onClose,
+  onSubmit,
+  submitButtonText,
+  isSubmitDisabled,
+  alternateTextContent,
+}) {
   function handleOverlayClick(e) {
     if (e.target === e.currentTarget) {
       onClose();
@@ -9,20 +19,22 @@ function ModalWithForm({ title, children, onClose, buttonText, onSubmit }) {
   }
 
   useEffect(() => {
-    function handleEscClose(e) {
-      if (e.key === "Escape") {
-        onClose();
-      }
+    function handleEsc(e) {
+      if (e.key === "Escape") onClose();
     }
-
-    document.addEventListener("keydown", handleEscClose);
-    return () => document.removeEventListener("keydown", handleEscClose);
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
   }, [onClose]);
 
+  if (!isOpen) return null;
+
   return (
-    <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal">
-        <button className="modal__close" onClick={onClose}>
+    <div
+      className="modal__overlay modal__overlay_opened"
+      onClick={handleOverlayClick}
+    >
+      <div className="modal__container">
+        <button className="modal__close-btn" onClick={onClose}>
           <img src={closeIcon} alt="Close modal" />
         </button>
 
@@ -31,9 +43,19 @@ function ModalWithForm({ title, children, onClose, buttonText, onSubmit }) {
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
 
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
+          {submitButtonText && (
+            <button
+              type="submit"
+              className="modal__submit-btn"
+              disabled={isSubmitDisabled}
+            >
+              {submitButtonText}
+            </button>
+          )}
+
+          {alternateTextContent && (
+            <p className="modal__link-option">{alternateTextContent}</p>
+          )}
         </form>
       </div>
     </div>

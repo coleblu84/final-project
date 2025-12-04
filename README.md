@@ -1,4 +1,4 @@
-# 🌎 News Explorer
+# 🌎 News Explorer - Final Project
  - Frontend for the News Explorer application - a web application that allows users to search for news articles and save their favorites.
  - News Explorer is a responsive web application built with React that enables users to search for news articles using a third-party news API. Users can browse current news, search for specific topics, and create a personalized collection of saved articles.
 
@@ -12,6 +12,32 @@
 ## ⚡ Live Demo
 Check out the live version here!!
 
+## 🧰 Tech Stack
+- [React](https://react.dev/)
+- [News API](https://newsapi.org/)
+- [Vite](https://vite.dev/)
+
+## 🚧 Challenges
+Here are a few hurdles I ran into while building this project — and what I learned from them:
+
+***Implementing Real API Requests & Handling Errors***
+
+Integrating the NewsAPI and managing the different response states (loading, empty results, API errors) required careful planning. It helped me improve my understanding of async logic and user-friendly error handling.
+
+***Creating a Fully Functional Modal System***
+
+Building reusable modal components that opened, closed, validated input, and supported multiple flows (login, registration, success modal) was a new challenge. It really sharpened my state-management and component-architecture skills.
+
+***Matching the Figma Design With Pixel-Perfect Styling***
+
+Recreating the design — especially the card layout, save buttons, tooltips, and responsive behavior — pushed me to get more comfortable with CSS, positioning, and media queries.
+
+## 💬 Feedback Welcome
+
+I’m always learning and improving!
+If you notice anything that could be better — whether it’s performance, code structure, accessibility, styling, or a sneaky bug — feel free to open an issue, submit a suggestion, or reach out.
+
+I appreciate any ideas or insights that can help me grow as a developer. 🙌
 
 ## 📁 File Structure
 ```text
@@ -77,8 +103,9 @@ src/
       Fonts/
       fonts.css
       normalize.css
-  global.css
-  main.jsx
+   global.css
+   main.jsx
+  .env
   .gitignore
   .prettierignore
   eslint.config.js

@@ -3,7 +3,6 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function RegistrationSuccessModal({ isOpen, onClose, switchToLogin }) {
   const handleSignInClick = (e) => {
     e.preventDefault();
-    onClose();
     switchToLogin();
   };
 
@@ -13,19 +12,9 @@ function RegistrationSuccessModal({ isOpen, onClose, switchToLogin }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSignInClick}
-      submitButtonText=""
+      submitButtonText="Sign in"
       isSubmitDisabled={false}
-    >
-      <div className="registration-success">
-        <button
-          type="button"
-          className="modal__btn-success"
-          onClick={handleSignInClick}
-        >
-          Sign In
-        </button>
-      </div>
-    </ModalWithForm>
+    />
   );
 }
 

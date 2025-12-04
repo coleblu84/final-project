@@ -1,29 +1,29 @@
 const NEWS_API_BASE_URL = import.meta.env.PROD
   ? "https://nomoreparties.co/news/v2/everything"
   : "https://newsapi.org/v2/everything";
+
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
 /**
- * Search news articles by a query
- * Only fetch articles from the last 7 days, newest first.
- * @param {string} query - Search term.
- * @returns {Promise<Array>} - Array of news articles.
+ * Search news articles by a query (last 7 days)
+ * @param {string} query
+ * @returns {Promise<Array>}
  */
-
 export const searchNews = async (query) => {
   if (!query.trim()) return [];
 
-  const fromDate = new Date();
-  fromDate.setDate(fromDate.getDate() - 7);
+  // --- Compute dates (from = 7 days ago, to = today) ---
+  const today = new Date();
+  const prior = new Date();
+  prior.setDate(today.getDate() - 7);
 
-  const month = String(fromDate.getMonth() + 1).padStart(2, "0");
-  const day = String(fromDate.getDate()).padStart(2, "0");
-  const year = fromDate.getFullYear();
-  const from = `${year}-${month}-${day}`;
+  const format = (date) => date.toISOString().split("T")[0]; // yyyy-mm-dd
 
-  const url = `${NEWS_API_BASE_URL}?q=${encodeURIComponent(
-    query
-  )}&from=${from}&sortBy=publishedAt&apiKey=${API_KEY}`;
+  const from = format(prior);
+  const to = format(today);
+
+  // --- Build URL with required parameters ---
+  const url = `${NEWS_API_BASE_URL}?q=${encodeURIComponent(query)}&from=${from}&to=${to}&sortBy=publishedAt&pageSize=100&apiKey=${API_KEY}`;
 
   try {
     const response = await fetch(url);
@@ -34,14 +34,7 @@ export const searchNews = async (query) => {
     }
 
     const data = await response.json();
-
-    const filteredArticles = (data.articles || []).filter(
-      (article) =>
-        article.title?.toLowerCase().includes(query.toLowerCase()) ||
-        article.description?.toLowerCase().includes(query.toLowerCase())
-    );
-
-    return filteredArticles;
+    return data.articles || [];
   } catch (error) {
     console.error("News API fetch error:", error);
     return [];

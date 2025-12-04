@@ -2,16 +2,14 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useFormValidation from "../Hooks/useFormValidation.jsx";
 
 function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
-  const { values, errors, handleChange, isValid } = useFormValidation(
-    {}, 
-    ["email", "password"]
-  );
+  const { values, errors, handleChange, isValid } = useFormValidation({}, [
+    "email",
+    "password",
+  ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isValid) {
-      onLogin(values);
-    }
+    if (isValid) onLogin(values);
   };
 
   return (
@@ -35,15 +33,14 @@ function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
         Email
         <input
           className="modal__input"
-          type="email"
           name="email"
+          type="email"
           required
-          placeholder="Enter email"
           value={values.email || ""}
           onChange={handleChange}
         />
         {errors.email && (
-          <span className="modal__error-message modal__error-message_visible">{errors.email}</span>
+          <span className="modal__error-message_visible">{errors.email}</span>
         )}
       </label>
 
@@ -51,15 +48,16 @@ function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
         Password
         <input
           className="modal__input"
-          type="password"
           name="password"
+          type="password"
           required
-          placeholder="Enter Password"
           value={values.password || ""}
           onChange={handleChange}
         />
         {errors.password && (
-          <span className="modal__error-message modal__error-message_visible">{errors.password}</span>
+          <span className="modal__error-message_visible">
+            {errors.password}
+          </span>
         )}
       </label>
     </ModalWithForm>

@@ -37,7 +37,7 @@
 }
 
 .news-card__delete-btn {
-  background-image: url(../../images/delete-article-pic.svg);
+  background-image: url(../../assets/delete-article-pic.svg);
   position: absolute;
   background-color: #fff;
   width: 40px;
@@ -52,7 +52,7 @@
 }
 
 .news-card__delete-btn:hover {
-  background-image: url(../../images/delete-article-hover.svg);
+  background-image: url(../../assets/delete-article-hover.svg);
 }
 
 .news-card__delete-btn:hover .news-card__tooltip,
@@ -129,7 +129,7 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  background-image: url(../../images/news-card-save-btn.svg);
+  background-image: url(../../assets/news-card-save-btn.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -146,11 +146,11 @@
 }
 
 .news-card__save-btn:hover {
-  background-image: url(../../images/save-article-hover.svg);
+  background-image: url(../../assets/save-article-hover.svg);
 }
 
 .news-card__save-btn-saved {
-  background-image: url(../../images/saved-article-blue.svg);
+  background-image: url(../../assets/saved-article-blue.svg);
 }
 
 .news-card__source {
@@ -223,7 +223,7 @@
 
 .news-card__save-btn-saved,
 .news-card__save-btn-saved:hover {
-  background-image: url(../../images/saved-article-blue.svg);
+  background-image: url(../../assets/saved-article-blue.svg);
 }
 
 @media screen and (max-width: 768px) {
