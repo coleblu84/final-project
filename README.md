@@ -17,21 +17,6 @@ Check out the live version here!!
 - [News API](https://newsapi.org/)
 - [Vite](https://vite.dev/)
 
-## 🚧 Challenges
-Here are a few hurdles I ran into while building this project — and what I learned from them:
-
-***Implementing Real API Requests & Handling Errors***
-
-Integrating the NewsAPI and managing the different response states (loading, empty results, API errors) required careful planning. It helped me improve my understanding of async logic and user-friendly error handling.
-
-***Creating a Fully Functional Modal System***
-
-Building reusable modal components that opened, closed, validated input, and supported multiple flows (login, registration, success modal) was a new challenge. It really sharpened my state-management and component-architecture skills.
-
-***Matching the Figma Design With Pixel-Perfect Styling***
-
-Recreating the design — especially the card layout, save buttons, tooltips, and responsive behavior — pushed me to get more comfortable with CSS, positioning, and media queries.
-
 ## 💬 Feedback Welcome
 
 I’m always learning and improving!
