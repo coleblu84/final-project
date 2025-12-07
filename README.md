@@ -12,6 +12,8 @@
 ## ⚡ Live Demo
 Check out the live version here!!
 
+[NewsExplorer](https://coleblu84.github.io/final-project/)
+
 ## 🧰 Tech Stack
 - [React](https://react.dev/)
 - [News API](https://newsapi.org/)
