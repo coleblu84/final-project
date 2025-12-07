@@ -2,6 +2,7 @@
   "name": "final-project",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://coleblu84.github.io/final-project/",
   "type": "module",
   "scripts": {
     "dev": "vite",
