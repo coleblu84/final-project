@@ -103,3 +103,5 @@ src/
   vite.config.js
 
 ```
+
+<!-- PR required for TripleTen review -->
