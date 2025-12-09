@@ -7,7 +7,7 @@ function About() {
       <div className="about__content">
         <img src={profilePic} alt="CJ Pic" className="about__image" />
         <div className="about__text-container">
-          <h1 className="about__title">Alittle about me</h1>
+          <h1 className="about__title">A little about me</h1>
           <p className="about__text">
             {" "}
             Hi, I'm C.J. - I’m a web developer who loves creating clean,
