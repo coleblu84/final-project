@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { HashRouter as BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import About from "../About/About.jsx";
 import Main from "../Main/Main.jsx";
@@ -30,60 +30,38 @@ function App() {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState(null);
-
-  const [savedArticles, setSavedArticles] = useState(getSavedArticles());
+  const [currentUser, setCurrentUser] = useState(() => getUser() || null);
+  const [savedArticles, setSavedArticles] = useState(
+    () => getSavedArticles() || []
+  );
 
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Load user if saved
-  useEffect(() => {
-    const savedUser = getUser();
-    if (savedUser) {
-      setCurrentUser(savedUser);
-    }
-  }, []);
-
-  // Sync saved list
   useEffect(() => {
     saveArticleList(savedArticles);
   }, [savedArticles]);
 
-  // ------------------------------
-  // Login / Register / Logout
-  // ------------------------------
-
-  function handleLogin(data) {
-    const storedUsers = getRegisteredUsers();
+  // ----------------------- Handlers -----------------------
+  const handleLogin = (data) => {
+    const storedUsers = getRegisteredUsers() || {};
     const userData = storedUsers[data.email];
 
-    if (!userData) {
-      alert("User not found. Please register first.");
-      return;
-    }
+    if (!userData) return alert("User not found. Please register first.");
 
-    const loggedInUser = {
-      name: userData.name,
-      email: userData.email,
-    };
-
+    const loggedInUser = { name: userData.name, email: userData.email };
     setCurrentUser(loggedInUser);
     setUser(loggedInUser);
     setIsLoginOpen(false);
-  }
+  };
 
-  function handleRegister(data) {
-    const storedUsers = getRegisteredUsers();
-
-    if (storedUsers[data.email]) {
-      alert("User already registered. Please login instead.");
-      return;
-    }
+  const handleRegister = (data) => {
+    const storedUsers = getRegisteredUsers() || {};
+    if (storedUsers[data.email])
+      return alert("User already registered. Please login instead.");
 
     storedUsers[data.email] = { name: data.name, email: data.email };
     setRegisteredUsers(storedUsers);
@@ -94,80 +72,52 @@ function App() {
 
     setIsRegisterOpen(false);
     setIsSuccessOpen(true);
-  }
+  };
 
-  function handleLogout() {
+  const handleLogout = () => {
     setCurrentUser(null);
     setUser(null);
-
     setArticles([]);
     setHasSearched(false);
     setSearchQuery("");
-  }
+  };
 
-  // ------------------------------
-  // Save / Delete
-  // ------------------------------
-
-  function handleSaveArticle(article, shouldSave) {
+  const handleSaveArticle = (article, shouldSave) => {
     if (!currentUser) {
       setIsLoginOpen(true);
       return;
     }
+    if (!article?.title) return;
 
     if (shouldSave) {
-      const articleWithKeyword = {
-        ...article,
-        keyword: searchQuery || "misc",
-      };
-      const updated = [...savedArticles, articleWithKeyword];
-      setSavedArticles(updated);
-      saveArticleList(updated);
+      const articleWithKeyword = { ...article, keyword: searchQuery || "misc" };
+      setSavedArticles((prev) => [...prev, articleWithKeyword]);
     } else {
-      const updated = savedArticles.filter(a => a.title !== article.title);
-      setSavedArticles(updated);
-      saveArticleList(updated);
+      setSavedArticles((prev) => prev.filter((a) => a.title !== article.title));
     }
-  }
+  };
 
-  // ------------------------------
-  // Search Handler
-  // ------------------------------
-
-  async function handleSearch(query) {
+  const handleSearch = (query) => {
     setIsLoading(true);
     setHasSearched(true);
     setSearchQuery(query);
     setErrorMessage("");
 
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    try {
-      const news = await searchNews(query);
-
-      if (!news || news.length === 0) {
+    new Promise((resolve) => resolve())
+      .then(() => searchNews(query))
+      .then((news) => setArticles(news || []))
+      .catch(() => {
+        setErrorMessage(
+          "Sorry, something went wrong during the request. Please try again later."
+        );
         setArticles([]);
-        return;
-      }
+      })
+      .finally(() => setIsLoading(false));
+  };
 
-      setArticles(news);
-    } catch (error) {
-      console.error("Search failed:", error);
-      setErrorMessage(
-        "Sorry, something went wrong during the request. Please try again later."
-      );
-      setArticles([]);
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  // ------------------------------
-  // Render
-  // ------------------------------
-
+  // ----------------------- Render -----------------------
   return (
-    <BrowserRouter>
+    <Router>
       <Header
         currentUser={currentUser}
         isLoggedIn={!!currentUser}
@@ -181,7 +131,7 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <div>
               <Main onSearch={handleSearch} isLoggedIn={!!currentUser} />
 
               {hasSearched && (
@@ -189,7 +139,9 @@ function App() {
                   {isLoading ? (
                     <div className="search-results__loading">
                       <Preloader />
-                      <p className="search-results__text">Searching for news...</p>
+                      <p className="search-results__text">
+                        Searching for news...
+                      </p>
                     </div>
                   ) : (
                     <NewsCardList
@@ -206,7 +158,7 @@ function App() {
 
               <About />
               <Footer />
-            </>
+            </div>
           }
         />
 
@@ -216,19 +168,16 @@ function App() {
             <SavedNews
               currentUser={currentUser}
               savedArticles={savedArticles}
-              onDeleteArticle={(article) => {
-                const updated = savedArticles.filter(
-                  (a) => a.title !== article.title
-                );
-                setSavedArticles(updated);
-                saveArticleList(updated);
-              }}
+              onDeleteArticle={(article) =>
+                setSavedArticles((prev) =>
+                  prev.filter((a) => a.title !== article.title)
+                )
+              }
             />
           }
         />
       </Routes>
 
-      {/* --- Modals --- */}
       <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
@@ -257,7 +206,7 @@ function App() {
           setIsLoginOpen(true);
         }}
       />
-    </BrowserRouter>
+    </Router>
   );
 }
 

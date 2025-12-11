@@ -12,6 +12,7 @@
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 .modal__overlay_opened {
@@ -20,12 +21,14 @@
 }
 
 .modal__container {
-  width: 430px;
+  width: 100%;
+  max-width: 430px;
   background: #fff;
   border-radius: 16px;
   padding: 34px 36px 28px;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   position: relative;
+  margin: 0 16px;
 }
 
 .modal__close-btn {
@@ -67,7 +70,7 @@
 }
 
 .modal__input:focus {
-  border-bottom: 1px solid black;
+  border-bottom-color: black;
 }
 
 .modal__error-message_visible {
@@ -109,4 +112,26 @@
 .modal__link-text {
   color: #2f71e5;
   cursor: pointer;
+}
+
+@media screen and (max-width: 360px) {
+  .modal__container {
+    padding: 24px 20px;
+    max-width: 300px;
+  }
+
+  .modal__close-btn {
+    right: -30px;
+    top: -30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .modal__close-btn {
+    top: -20px;
+    right: -20px;
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+  }
 }

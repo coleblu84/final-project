@@ -8,9 +8,9 @@ function NewsCardList({
   errorMessage = "",
   onSaveArticle,
   onDeleteArticle,
-  isLoggedIn,
-  isSavedNewsPage,
-  savedArticles,
+  isLoggedIn = false,
+  isSavedNewsPage = false,
+  savedArticles = [],
 }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
@@ -18,13 +18,8 @@ function NewsCardList({
     setVisibleCount((prev) => Math.min(prev + 3, articles.length));
   };
 
-  const visibleArticles = isSavedNewsPage
-    ? articles
-    : articles.slice(0, visibleCount);
+  const visibleArticles = isSavedNewsPage ? articles : articles.slice(0, visibleCount);
 
-  // ----------------------------
-  // Error Message from API
-  // ----------------------------
   if (errorMessage) {
     return (
       <div className="news-card-list error-block">
@@ -33,12 +28,7 @@ function NewsCardList({
     );
   }
 
-  // ----------------------------
-  // Nothing Found
-  // ----------------------------
-  if (articles.length === 0) {
-    return <NotFound />;
-  }
+  if (!articles.length) return <NotFound />;
 
   return (
     <div className="news-card-list">

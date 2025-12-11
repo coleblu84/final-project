@@ -1,9 +1,13 @@
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./global.css";
 import App from "./components/App/App.jsx";
+import "./global.css";
 
-createRoot(document.getElementById("root")).render(
+const container = document.getElementById("root");
+
+if (!container) throw new Error("Root element not found. Make sure index.html has a div with id 'root'.");
+
+createRoot(container).render(
   <StrictMode>
     <App />
   </StrictMode>

@@ -1,65 +1,69 @@
-import { useEffect } from "react";
-import closeIcon from "../../assets/close.svg";
-import "./ModalWithForm.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import useFormValidation from "../Hooks/useFormValidation.jsx";
 
-function ModalWithForm({
-  title,
-  children,
-  isOpen,
-  onClose,
-  onSubmit,
-  submitButtonText,
-  isSubmitDisabled,
-  alternateTextContent,
-}) {
-  function handleOverlayClick(e) {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  }
+function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
+  const { values, errors, handleChange, isValid } = useFormValidation({}, [
+    "email",
+    "password",
+  ]);
 
-  useEffect(() => {
-    function handleEsc(e) {
-      if (e.key === "Escape") onClose();
-    }
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
-
-  if (!isOpen) return null;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isValid) onLogin(values);
+  };
 
   return (
-    <div
-      className="modal__overlay modal__overlay_opened"
-      onClick={handleOverlayClick}
+    <ModalWithForm
+      title="Sign In"
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      submitButtonText="Sign In"
+      isSubmitDisabled={!isValid}
+      alternateTextContent={
+        <>
+          or{" "}
+          <span className="modal__link-text" onClick={switchToRegister}>
+            Sign Up
+          </span>
+        </>
+      }
     >
-      <div className="modal__container">
-        <button className="modal__close-btn" onClick={onClose}>
-          <img src={closeIcon} alt="Close modal" />
-        </button>
+      <label className="modal__label">
+        Email
+        <input
+          className="modal__input"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          required
+          value={values.email || ""}
+          onChange={handleChange}
+        />
+        {errors.email && (
+          <span className="modal__error-message_visible">{errors.email}</span>
+        )}
+      </label>
 
-        <h3 className="modal__title">{title}</h3>
-
-        <form className="modal__form" onSubmit={onSubmit}>
-          {children}
-
-          {submitButtonText && (
-            <button
-              type="submit"
-              className="modal__submit-btn"
-              disabled={isSubmitDisabled}
-            >
-              {submitButtonText}
-            </button>
-          )}
-
-          {alternateTextContent && (
-            <p className="modal__link-option">{alternateTextContent}</p>
-          )}
-        </form>
-      </div>
-    </div>
+      <label className="modal__label">
+        Password
+        <input
+          className="modal__input"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          required
+          value={values.password || ""}
+          onChange={handleChange}
+        />
+        {errors.password && (
+          <span className="modal__error-message_visible">
+            {errors.password}
+          </span>
+        )}
+      </label>
+    </ModalWithForm>
   );
 }
 
-export default ModalWithForm;
+export default LoginModal;

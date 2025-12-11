@@ -22,38 +22,40 @@ function Navigation({
   };
 
   const renderAuthButton = () => {
-  if (isLoggedIn) {
-    const logoutIcon = theme === "light" ? logoutBlack : logoutWhite;
-    
-    return (
-      <button
-        type="button"
-        className={`navigation__btn_user_${isMobile ? "mobile" : "desktop"} navigation__btn_user_theme_${theme}`}
-        onClick={onLogout}
-      >
-        {isMobile ? "Logout" : (currentUser?.name || "User")}
-        <img 
-          src={logoutIcon} 
-          alt="logout" 
-          className="navigation__logout-icon" 
-        />
-      </button>
-    );
-  } else {
-    return (
-      <button
-        type="button"
-        className={`navigation__signin-btn_${isMobile ? "mobile" : "desktop"} navigation__signin-btn_theme_${theme}`}
-        onClick={onSignInClick}
-      >
-        Sign in
-      </button>
-    );
-  }
-};
+    if (isLoggedIn) {
+      const logoutIcon = theme === "light" ? logoutBlack : logoutWhite;
+
+      return (
+        <button
+          type="button"
+          className={`navigation__btn_user_${isMobile ? "mobile" : "desktop"} navigation__btn_user_theme_${theme}`}
+          onClick={onLogout}
+        >
+          {isMobile ? "Logout" : currentUser?.name || "User"}
+          <img
+            src={logoutIcon}
+            alt="logout"
+            className="navigation__logout-icon"
+          />
+        </button>
+      );
+    } else {
+      return (
+        <button
+          type="button"
+          className={`navigation__signin-btn_${isMobile ? "mobile" : "desktop"} navigation__signin-btn_theme_${theme}`}
+          onClick={onSignInClick}
+        >
+          Sign in
+        </button>
+      );
+    }
+  };
 
   return (
-    <ul className={`navigation__menu navigation__menu_type_${isMobile ? "mobile" : "desktop"}`}>
+    <ul
+      className={`navigation__menu navigation__menu_type_${isMobile ? "mobile" : "desktop"}`}
+    >
       <li>
         <Link
           to="/"

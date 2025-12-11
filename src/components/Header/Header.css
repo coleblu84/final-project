@@ -137,6 +137,13 @@
   height: 20px;
 }
 
+@media screen and (min-width: 1440px) {
+  .news-card-list__container {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1232px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .header {
     padding: 20px 40px;
@@ -164,10 +171,16 @@
     gap: 16px;
   }
 
-  .navigationbtn_user_desktop,
-  .navigationsignin-button_desktop {
+  .navigation__btn_user_desktop,
+  .navigation__signin-button_desktop {
     padding: 12px 18px;
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu-icon {
+    display: block;
   }
 }
 
@@ -181,12 +194,18 @@
   }
 
   .header__menu-icon {
+    display: block;
     background-color: transparent;
     border: none;
     height: 24px;
     width: 24px;
     background-image: url(../../images/menu-icon-white.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin-left: auto;
+    cursor: pointer;
+    z-index: 100;
   }
 
   .header_mobile-menu-open .header__mobile-overlay {

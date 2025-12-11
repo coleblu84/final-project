@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function useFormValidation(
   initialValues = {},
-  requiredFields = []
+  requiredFields = [],
 ) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
 
-  const emailPattern = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -40,20 +39,17 @@ export default function useFormValidation(
     setErrors((prevErrors) => ({ ...prevErrors, [name]: errorMsg }));
   }
 
-  useEffect(() => {
-    const allRequiredFilled = requiredFields.every(
-      (field) => values[field] && values[field].trim() !== ""
-    );
+  const allRequiredFilled = requiredFields.every(
+    (field) => values[field] && values[field].trim() !== "",
+  );
 
-    const noErrors = Object.values(errors).every((err) => !err);
+  const noErrors = Object.values(errors).every((err) => !err);
 
-    setIsValid(allRequiredFilled && noErrors);
-  }, [values, errors, requiredFields]);
+  const isValid = allRequiredFilled && noErrors;
 
   function resetForm() {
     setValues(initialValues);
     setErrors({});
-    setIsValid(false);
   }
 
   return { values, errors, isValid, handleChange, resetForm };

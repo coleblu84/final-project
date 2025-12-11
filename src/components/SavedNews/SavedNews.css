@@ -19,7 +19,7 @@
 }
 
 .saved-news__no-articles-title {
-  font-family: 'Roboto Slab', Arial, sans-serif;
+  font-family: "Roboto Slab", Arial, sans-serif;
   font-weight: 700;
   font-size: 20px;
   color: #1a1b22;
@@ -29,7 +29,7 @@
   .saved-news__sidebar-text {
     color: #fff;
   }
-  
+
   .saved-news .news-card-list {
     padding: 40px 20px;
   }
@@ -44,7 +44,7 @@
 }
 
 @media (min-width: 321px) and (max-width: 484px) {
-.saved-news {
+  .saved-news {
     padding: 0;
   }
 
@@ -57,9 +57,8 @@
   }
 }
 
-
 @media screen and (max-width: 320px) {
   .saved-news__sidebar-text {
     display: none;
- }
+  }
 }
