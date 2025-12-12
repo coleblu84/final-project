@@ -32,7 +32,7 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(() => getUser() || null);
   const [savedArticles, setSavedArticles] = useState(
-    () => getSavedArticles() || []
+    () => getSavedArticles() || [],
   );
 
   const [articles, setArticles] = useState([]);
@@ -108,7 +108,7 @@ function App() {
       .then((news) => setArticles(news || []))
       .catch(() => {
         setErrorMessage(
-          "Sorry, something went wrong during the request. Please try again later."
+          "Sorry, something went wrong during the request. Please try again later.",
         );
         setArticles([]);
       })
@@ -131,34 +131,37 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
-              <Main onSearch={handleSearch} isLoggedIn={!!currentUser} />
+            <>
+              <main>
+                <Main onSearch={handleSearch} isLoggedIn={!!currentUser} />
 
-              {hasSearched && (
-                <section className="search-results">
-                  {isLoading ? (
-                    <div className="search-results__loading">
-                      <Preloader />
-                      <p className="search-results__text">
-                        Searching for news...
-                      </p>
-                    </div>
-                  ) : (
-                    <NewsCardList
-                      articles={articles}
-                      errorMessage={errorMessage}
-                      onSaveArticle={handleSaveArticle}
-                      isLoggedIn={!!currentUser}
-                      isSavedNewsPage={false}
-                      savedArticles={savedArticles}
-                    />
-                  )}
-                </section>
-              )}
+                {hasSearched && (
+                  <section className="search-results">
+                    {isLoading ? (
+                      <div className="search-results__loading">
+                        <Preloader />
+                        <p className="search-results__text">
+                          Searching for news...
+                        </p>
+                      </div>
+                    ) : (
+                      <NewsCardList
+                        articles={articles}
+                        errorMessage={errorMessage}
+                        onSaveArticle={handleSaveArticle}
+                        isLoggedIn={!!currentUser}
+                        isSavedNewsPage={false}
+                        savedArticles={savedArticles}
+                      />
+                    )}
+                  </section>
+                )}
 
-              <About />
+                <About />
+              </main>
+
               <Footer />
-            </div>
+            </>
           }
         />
 
@@ -170,7 +173,7 @@ function App() {
               savedArticles={savedArticles}
               onDeleteArticle={(article) =>
                 setSavedArticles((prev) =>
-                  prev.filter((a) => a.title !== article.title)
+                  prev.filter((a) => a.title !== article.title),
                 )
               }
             />

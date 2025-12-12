@@ -31,12 +31,17 @@
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-  padding-left: 104px;
-  padding-right: 104px;
+  padding: 190px 16px 208px; 
   max-width: 100%;
-  padding-top: 190px;
-  padding-bottom: 208px;
 }
+
+@media screen and (min-width: 485px) {
+  .news-card-container {
+    padding-left: 104px;
+    padding-right: 104px;
+  }
+}
+
 .search-results__loading {
   display: flex;
   flex-direction: column;

@@ -30,7 +30,9 @@ function SavedNews({ currentUser, savedArticles = [], onDeleteArticle }) {
         />
       ) : (
         <div className="saved-news__no-articles">
-          <h2 className="saved-news__no-articles-title">No saved articles yet</h2>
+          <h2 className="saved-news__no-articles-title">
+            No saved articles yet
+          </h2>
         </div>
       )}
 

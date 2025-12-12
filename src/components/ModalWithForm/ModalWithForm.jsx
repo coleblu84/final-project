@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./ModalWithForm.css";
-import closeIcon from "../../assets/close.svg"; 
+import closeIcon from "../../assets/close.svg"; // Corrected path
 
 function ModalWithForm({
   isOpen,
@@ -14,12 +14,9 @@ function ModalWithForm({
   isSubmitDisabled = false,
   serverMessage,
 }) {
-  // Close with ESC key
   useEffect(() => {
     const handleEscape = (evt) => {
-      if (evt.key === "Escape") {
-        onClose();
-      }
+      if (evt.key === "Escape") onClose();
     };
 
     if (isOpen) {
@@ -35,11 +32,8 @@ function ModalWithForm({
     };
   }, [isOpen, onClose]);
 
-  // Close by clicking overlay
   const handleOverlayClick = (evt) => {
-    if (evt.target.classList.contains("modal__overlay")) {
-      onClose();
-    }
+    if (evt.target.classList.contains("modal__overlay")) onClose();
   };
 
   if (!isOpen) return null;
@@ -50,7 +44,6 @@ function ModalWithForm({
       onClick={handleOverlayClick}
     >
       <div className="modal__container" onClick={(e) => e.stopPropagation()}>
-        
         <button
           type="button"
           className="modal__close-btn"
@@ -60,11 +53,8 @@ function ModalWithForm({
             backgroundImage: `url(${closeIcon})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            width: "40px",
-            height: "40px",
           }}
         />
-
         <h2 className="modal__title">{title}</h2>
 
         <form className="modal__form" name={name} onSubmit={onSubmit}>

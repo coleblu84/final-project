@@ -1,6 +1,10 @@
 import "./SavedNewsHeader.css";
 
-function SavedNewsHeader({ articlesCount = 0, currentUser = {}, keywords = [] }) {
+function SavedNewsHeader({
+  articlesCount = 0,
+  currentUser = {},
+  keywords = [],
+}) {
   const userName = currentUser?.name || "User";
 
   const getKeywordsText = () => {
@@ -27,7 +31,9 @@ function SavedNewsHeader({ articlesCount = 0, currentUser = {}, keywords = [] })
       </h2>
       <p className="saved-news-header__keywords">
         By keywords:{" "}
-        <span className="saved-news-header__keywords-bold">{getKeywordsText()}</span>
+        <span className="saved-news-header__keywords-bold">
+          {getKeywordsText()}
+        </span>
       </p>
     </div>
   );

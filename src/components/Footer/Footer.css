@@ -6,8 +6,14 @@
 .footer__content {
   display: flex;
   justify-content: space-between;
-  padding: 32px 104px 26px;
+  padding: 32px 16px 26px;
   align-items: center;
+}
+
+@media screen and (min-width: 485px) {
+  .footer__content {
+    padding: 32px 104px 26px;
+  }
 }
 
 .footer__copyright {

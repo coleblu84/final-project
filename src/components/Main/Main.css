@@ -48,10 +48,10 @@
   background-color: #fff;
   border-radius: 100px;
   border: none;
-  width: 608px;
+  width: 100%; 
+  max-width: 608px;
   height: 64px;
   margin: 88px auto 80px;
-  max-width: 100%;
 }
 
 .main__search-input {
@@ -63,7 +63,7 @@
   border-radius: 100px;
   border: none;
   flex: 1;
-  padding-left: 24px;
+  padding-left: 16px; 
   outline: none;
 }
 

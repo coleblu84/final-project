@@ -10,7 +10,7 @@ function NewsCard({
   savedArticles = [],
 }) {
   const saved = savedArticles.some(
-    (savedArticle) => savedArticle.title === article.title
+    (savedArticle) => savedArticle.title === article.title,
   );
 
   const [imageError, setImageError] = useState(false);

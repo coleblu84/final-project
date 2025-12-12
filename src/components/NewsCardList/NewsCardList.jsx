@@ -18,7 +18,9 @@ function NewsCardList({
     setVisibleCount((prev) => Math.min(prev + 3, articles.length));
   };
 
-  const visibleArticles = isSavedNewsPage ? articles : articles.slice(0, visibleCount);
+  const visibleArticles = isSavedNewsPage
+    ? articles
+    : articles.slice(0, visibleCount);
 
   if (errorMessage) {
     return (
