@@ -36,6 +36,7 @@ function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
           name="email"
           type="email"
           required
+          placeholder="Enter email"
           value={values.email || ""}
           onChange={handleChange}
         />
@@ -51,6 +52,7 @@ function LoginModal({ isOpen, onClose, onLogin, switchToRegister }) {
           name="password"
           type="password"
           required
+          placeholder="Enter password"
           value={values.password || ""}
           onChange={handleChange}
         />

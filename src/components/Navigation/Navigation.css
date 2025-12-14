@@ -92,6 +92,18 @@
   height: 16px;
 }
 
+.navigation__signin-btn_theme_light:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.navigation__signin-btn_theme_dark:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
 @media screen and (max-width: 768px) {
   .navigation__menu {
     display: flex;
@@ -210,7 +222,8 @@
   .navigation__signin-btn_theme_light {
     background-color: transparent;
     color: #1a1b22;
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
     height: 48px;
     top: 19px;
     left: 1160px;
@@ -224,7 +237,8 @@
   .navigation__signin-btn_theme_dark {
     background-color: transparent;
     color: #fff;
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
     height: 48px;
     top: 19px;
     left: 1160px;

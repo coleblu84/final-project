@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./ModalWithForm.css";
-import closeIcon from "../../assets/close.svg"; // Corrected path
+import closeIcon from "../../assets/close.svg";
 
 function ModalWithForm({
   isOpen,

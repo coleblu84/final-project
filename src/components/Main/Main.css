@@ -48,7 +48,7 @@
   background-color: #fff;
   border-radius: 100px;
   border: none;
-  width: 100%; 
+  width: 100%;
   max-width: 608px;
   height: 64px;
   margin: 88px auto 80px;
@@ -63,7 +63,7 @@
   border-radius: 100px;
   border: none;
   flex: 1;
-  padding-left: 16px; 
+  padding-left: 16px;
   outline: none;
 }
 
@@ -82,6 +82,13 @@
   border: none;
   background-color: #2f71e5;
   color: #fff;
+}
+
+.main__search-btn:hover {
+  background-color: #1f59c3;
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out;
 }
 
 .main__title {
@@ -143,6 +150,11 @@
     max-width: 90%;
     padding: 0 16px;
     margin-top: 96px;
+
+    left: 0;
+    transform: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .main__title {
@@ -183,7 +195,8 @@
 
   .main__search-btn {
     font-size: 18px;
-    width: 288px;
+    width: 100%;
+    max-width: 288px;
     height: 56px;
     margin-bottom: 32px;
   }

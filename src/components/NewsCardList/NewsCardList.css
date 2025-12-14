@@ -23,9 +23,6 @@
   margin-right: auto;
 }
 
-/* ------------------------------
-   DESKTOP (≥1024px) — EXACT 3 CARDS
-   ------------------------------ */
 @media screen and (min-width: 1024px) {
   .news-card-list__container {
     grid-template-columns: repeat(3, 1fr);
@@ -73,9 +70,7 @@
   color: #1a1b22;
 }
 
-/* ------------------------------
-   TABLET (≤768px)
-   ------------------------------ */
+
 @media screen and (max-width: 768px) {
   .news-card-list {
     padding: 32px 40px;
@@ -101,9 +96,7 @@
   }
 }
 
-/* ------------------------------
-   MOBILE (≤320px)
-   ------------------------------ */
+
 @media screen and (max-width: 320px) {
   .news-card-list {
     padding: 24px 12px 12px 12px;
