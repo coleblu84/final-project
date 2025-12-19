@@ -35,12 +35,12 @@
   max-width: 100%;
 }
 
-@media screen and (max-width: 390px) {
+/* @media screen and (max-width: 390px) {
   .news-card-container {
     flex-direction: column;
     align-items: center;
   }
-}
+} */
 
 @media screen and (min-width: 485px) {
   .news-card-container {
