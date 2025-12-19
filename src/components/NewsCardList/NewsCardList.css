@@ -77,7 +77,7 @@
   }
 
   .news-card-list__container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 8px;
     padding: 0;
     width: 100%;

@@ -229,7 +229,7 @@
 @media screen and (max-width: 768px) {
   .news-card {
     width: 100%;
-    max-width: 224px;
+    max-width: none;
     height: auto;
   }
 
